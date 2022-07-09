@@ -27,3 +27,33 @@ as.logical(y)  ## changes class to logical, with zero as the only false
 
 firstlist <- list(1, "a", TRUE, 1+4i)
 firstlist
+
+matx <- matrix(nrow = 2, ncol = 3)  ## empty matrix of 2 rows and 3 columns
+print(matx)
+dim(matx)  ## returns the number of rows and columns (dimensions)
+
+matx <- matrix(1:6, nrow = 2, ncol = 3) ## matrix of numbers 1-6
+matx  ## numbers distributed columnwise = columns fill up first
+
+matx <- 1:10  ## one-row matrix of nos 1-10
+matx
+dim(matx) <- c(2, 5)  ## adds dimensions to the matrix
+matx
+
+ob1 <- 1:3
+ob2 <- 10:12
+cbind(ob1, ob2)  ## binds two objects into column-based matrix
+rbind(ob1, ob2)  ## binds two objects into row-based matrix
+
+fact <- factor(c("yes", "yes", "no", "yes", "no"))
+fact  ##factor = special vector representing categorical data
+table(fact)  ## returns frequency of factor lvls
+unclass(fact)  ## converts factor to a vector of integers
+
+fact <- factor(c("yes", "yes", "no", "yes", "no"), levels = c("yes", "no"))
+fact  ## returns factor with lvls specifically ordered yes, then no
+## normally lvls sorted alphabetically, so no is before yes
+
+misvec <- c(1, 2, NA, 10, NaN, 3)
+is.na(misvec)  ## checks for missing values in object, returning T/F
+is.nan(misvec)  ## checks for unidentified math operations, returning T/F
