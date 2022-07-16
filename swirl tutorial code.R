@@ -84,4 +84,47 @@ dir.create(file.path("testdir2", "testdir3"), recursive = TRUE) ## Create a dire
 
 
 
-## LESSON 3 - 
+## LESSON 3 - Sequences of numbers
+
+1:20 ## every integer between (and including) 1 and 20
+pi:10 ## vector of real numbers starting with pi (3.142...)
+## and increasing in increments of 1. The upper limit of 10 is never reached,
+## since the next number in our sequence would be greater than 10
+15:1 ## counted backwards in increments of 1
+?":" ## help file about the function
+seq(1, 20) ## same output as 1:20
+seq(0, 10, by=0.5) ## vector of numbers ranging from 0 to 10, incremented by 0.5
+my_seq <- seq(5, 10, length=30) ## sequence of 30 numbers between 5 and 10 stored in variable
+length(my_seq) ## check the length
+1:length(my_seq) ## sequence of integers from 1 to N with N = length of my_seq vector
+seq(along.with = my_seq) ## same as 1:length(my_seq)
+seq_along(my_seq) ## same as 1:length(my_seq)
+rep(0, times=40) ## vector that contains 40 zeros
+rep(c(0, 1, 2), times=10) ## 10 repetitions of the vector (0, 1, 2)
+rep(c(0, 1, 2), each=10) ## contain 10 zeros, then 10 ones, then 10 twos
+
+
+
+## LESSON 4 - Vectors
+
+num_vect <- c(0.5, 55, -10, 6) ## numeric vector
+tf <- num_vect < 1 ## variable checking if vector values are less than 1
+## `<` and `>=` symbols are called 'logical operators'
+## Other logical operators  `>`, `<=`, `==` for exact equality, and `!=` for inequality
+## two logical expressions, A and B, we can ask whether at least one is TRUE
+## with A | B (logical 'or' a.k.a. 'union')
+## or whether they are both TRUE with A & B (logical 'and' a.k.a. 'intersection'). 
+## !A is the negation of A and is TRUE when A is FALSE and vice versa
+my_char <- c("My", "name", "is") ## character vector
+paste(my_char, collapse = " ") ## join vector elements into one continuous character string
+## separated with single spaces
+paste("Hello", "world!", sep = " ") ## join vectors into one continuous character string
+## separated with single spaces
+paste(1:3, c("X", "Y", "Z"), sep = "") ## join vectors into pairs without space separation
+paste(LETTERS, 1:4, sep = "-") ## Since the character vector LETTERS is longer than the numeric vector 1:4
+## R simply recycles, or repeats, 1:4 until it matches the length
+## numeric vector 1:4 gets 'coerced' into a character vector
+
+
+
+## LESSON 5 - Missing values
