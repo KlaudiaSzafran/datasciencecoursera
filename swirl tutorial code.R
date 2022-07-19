@@ -128,3 +128,92 @@ paste(LETTERS, 1:4, sep = "-") ## Since the character vector LETTERS is longer t
 
 
 ## LESSON 5 - Missing values
+
+x <- c(44, NA, 5, NA) ## vector with missing values
+y <- rnorm(1000) ## vector containing 1000 draws from a standard normal distribution
+z <- rep(NA, 1000) ## vector containing 1000 NAs
+my_data <- sample(c(y, z), 100) ## select 100 elements at random from combined y and z
+my_na <- is.na(my_data) ## checks if each element of a vector is NA
+my_data == NA ## DOESN'T work as NA is not really a value, just a placeholder for quantity that's not available
+sum(my_na) ## sums up all trues since TRUE = 1 and FALSE = 0
+0/0 ## returns NaN, not a number
+
+
+
+## LESSON 6 - Subsetting vectors
+
+x[1:10] ## [index vector] to view the first ten elements of x
+x[is.na(x)] ## returns all missing values from the vector
+y <- x[!is.na(x)] ## vector with all values that are NOT NA
+y[y>0] ## all of the positive elements of y
+x[x>0] ## bunch of NAs mixed in with positive numbers since NA is not a value
+x[!is.na(x) & x>0] ## only values of x that are both non-missing AND greater than zero
+x[c(3, 5, 7)] ## returns 3rd, 5th, and 7th elements of x
+x[c(-2, -10)] ## returns all elements of x EXCEPT for the 2nd and 10th
+x[-c(2, 10)] ## same as x[c(-2, -10)]
+vect <- c(foo = 11, bar = 2, norf = NA) ## vector with named elements
+names(vect) ## returns names from the vector, without values
+vect2 <- c(11, 2, NA)
+names(vect2) <- c("foo", "bar", "norf") ## assigns names to values
+identical(vect, vect2) ## check that vect and vect2 are the same
+vect["bar"] ## returns the second named element
+vect[c("foo", "bar")] ## specify a vector of names
+
+
+
+## LESSON 7 - Matrices and data frames
+
+my_vector <- 1:20
+dim(my_vector) ## returns 'dimensions' of an object; here NULL cause vectors have no dimensions
+length(my_vector) ## returns length of vector
+dim(my_vector) <- c(4, 5) ## turns vector into a 4 rows x 5 columns matrix
+attributes(my_vector) ## shows attributes, such as dimensions
+class(my_vector) ## checks the class, here - a matrix / array
+my_matrix2 <- matrix(1:20, nrow=4, ncol=5) ## makes a matrix from scratch
+identical(my_matrix, my_matrix2) ## checks if they're the same
+patients <- c("Bill", "Gina", "Kelly", "Sean")
+cbind(patients, my_matrix) ## combines both matrices but turns them into character type
+my_data <- data.frame(patients, my_matrix) ## combines matrices into a data frame
+## without turning numbers into strings
+class(my_data) ## returns class type; here - "data.frame"
+cnames <- c("patient", "age", "weight", "bp", "rating", "test")
+colnames(my_data) <- cnames ## assigns column names to data frame from cnames vector
+
+
+
+## LESSON 8 - Logic
+
+TRUE == TRUE ## checks if equal to
+(FALSE == TRUE) == FALSE
+6<7 ## less than
+10<=10 ## less than or equal
+5 != 7 ## not equal
+!(5==7) ## negates the expression to TRUE
+FALSE & FALSE ## AND operator; here: false
+TRUE & TRUE ## here: true
+TRUE & FALSE ## here: false
+TRUE & c(TRUE, FALSE, FALSE) ## checks logic for each of three pairs
+TRUE && c(TRUE, FALSE, FALSE) ## checks logic for the first pair only
+TRUE | c(TRUE, FALSE, FALSE) ## OR operator, checks each of three pairs
+TRUE || c(TRUE, FALSE, FALSE) ## checks the first pair only
+5 > 8 || 6 != 8 && 4 > 3.9 ## First the left and right operands of the AND operator are evaluated
+## 6 is not equal 8, 4 is greater than 3.9, therefore both operands are TRUE
+## so the resulting expression `TRUE && TRUE` evaluates to TRUE.
+## Then the left operand of the OR operator is evaluated: 5 is not greater than 8 
+## so the entire expression is reduced to FALSE || TRUE.
+## Since the right operand of this expression is TRUE the entire expression evaluates to TRUE
+isTRUE(6>4)
+!isTRUE(4 < 3) ## negated
+identical('twins', 'twins')
+identical(5 > 4, 3 < 3.1) ## also true
+xor(5 == 6, !FALSE) ## exclusive OR; if one TRUE and one FALSE, then TRUE, otherwise FALSE
+ints <- sample(10)
+ints > 5 ## checks true false for every element
+which(ints>7) ## returns the sequence numbers (indices) of the elements that match (4th element, 5th etc)
+any(ints<0)
+all(ints>0)
+
+
+
+## LESSON 9 - Functions
+
