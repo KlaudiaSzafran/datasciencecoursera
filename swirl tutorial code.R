@@ -316,3 +316,29 @@ mad_libs <- function(...){
 
 ## LESSON 14 - Dates and times
 
+## dates are stored as the number of days since 1970-01-01 (Date class)
+## times are stored as either the number of seconds since 1970-01-01 ('POSIXct' class)
+## or a list of seconds, minutes, hours, etc. ('POSIXlt' class)
+
+d1 <- Sys.Date()
+class(d1) ## confirm it's Date class
+unclass(d1) ## shows what it looks like internally; here, 19193 - no of day since Jan 1, 1970
+d1 ## shows today's date in year-month-day format
+d2 <- as.Date("1969-01-01") ## date before unix date
+unclass(d2) ## returns -365, what fun :D
+t1 <- Sys.time()
+t1 ## returns date + time CEST
+class(t1) ## returns "POSIXct" "POSIXt"; POSIXt just as a common language between POSIXct and POSIXlt
+unclass(t1) ## returns no of seconds since Jan 1, 1970
+as.POSIXlt(Sys.time()) ## coerces the result as POSIXlt this time
+unclass(t2) ## prints just the same, but internally is stored as list of values that make up the date and time
+str(unclass(t2)) ## more compact view of the POSIXlt list
+t2$min ## returns only minutes from POSIXlt list
+weekdays(d1) ## returns day of the week of the variable
+months(t1) ## returns month of the variable
+quarters(t2) ## returns quarter of the yer of the variable
+t3 <- "October 17, 1986 08:24" ## non-standard time format
+t4 <- strptime(t3, "%B %d, %Y %H:%M") ## converts to R time format
+Sys.time() > t1 ## checks if some time has passed
+Sys.time() - t1 ## returns time difference
+difftime(Sys.time(), t1, units = 'days') ## returns how many days have passed since creating t1
