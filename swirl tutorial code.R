@@ -1,4 +1,8 @@
+## R sumup slogan: 1. Everything that exists is an object. 2. Everything that happens is a function call
+
 ## LESSON 1 - Building blocks
+
+rm(list=ls()) ## clears workspace by removing stored variables
 
 5 + 7 ## In its simplest form, R can be used as an interactive calculator
 
@@ -216,4 +220,99 @@ all(ints>0)
 
 
 ## LESSON 9 - Functions
+
+Sys.Date() ## returns today's date
+mean(c(2, 4, 5))
+
+boring_function <- function(x) {
+  x
+} ## function that returns whatever is input in parentheses
+boring_function('My first function!') ## returns My first function!
+boring_function ## returns source code for the function
+
+my_mean <- function(my_vector) {
+  sum(my_vector) / length(my_vector) 
+} ## function that returns the mean
+my_mean(c(4, 5, 10)) ## returns the mean, 6.33..
+
+increment <- function(number, by = 1){
+  number + by
+} ## function that returns numbers increased by 1
+increment(5) ## returns 6
+increment(5, 2) ## also works, returns 7
+
+remainder <- function(num, divisor = 2) {
+  num %% divisor 
+} ## function that returns the remainder of division, default by 2
+remainder(5) ## returns 1
+remainder(11, 5) ## also works, returns 1
+remainder(divisor=11, num=5) ## returns 5
+remainder(4, div=2) ## R can also partially match arguments; div = divisor
+args(remainder) ## returns function arguments
+
+add_two_numbers <- function(num1, num2){
+  num1 + num2
+} ## function returns sum
+multiply_two_numbers <- function(num1, num2){
+  num1 * num2
+} ## function for multiplication
+some_function <- function(func){
+  func(2, 4)
+} ## function returns just numbers
+some_function(add_two_numbers) ## will evaluate to 6
+some_function(multiply_two_numbers) ## will evaluate to 8
+
+evaluate <- function(func, dat){
+  func(dat) 
+} ## function returns result of dat being passed as an argument to func
+evaluate(sd, c(1.4, 3.6, 7.9, 8.8)) ## returns standard deviation of the vector
+
+evaluate(function(x){x+1}, 6) ## includes anonymous function; returns 7
+evaluate(function(x){x[1]}, c(8, 4, 0)) ## anonymous function; returns 1st element of vector
+evaluate(function(x){x[length(x)]}, c(8, 4, 0)) ## anonymous; returns last element
+
+paste("Programming", "is", "fun!") ## pastes these as one string incl spaces
+
+simon_says <- function(...){
+  paste("Simon says:", ...)
+}
+
+telegram <- function(...){
+  paste("START", ..., "STOP")
+}
+telegram("Baby", "is", "drawing") ## returns START Baby is drawing STOP
+
+add_alpha_and_beta <- function(...){
+## First capture the ellipsis inside of a list
+## and then assign the list to a variable. Let's name the variable `args`.
+  args <- list(...)
+## assume that there are two named arguments within args named `alpha` and `beta.`
+## extract named arguments by using the name and double brackets
+  alpha <- args[["alpha"]]
+  beta  <- args[["beta"]]
+## Then we return the sum of alpha and beta.
+  alpha + beta 
+}
+
+mad_libs <- function(...){
+  args <- list(...)
+  place <- args[["place"]]
+  adjective <- args[["adjective"]]
+  noun <- args[["noun"]]
+  paste("News from", place, "today where", adjective, "students took to the streets in protest of the new", noun, "being installed on campus.")
+}
+
+"%mult_add_one%" <- function(left, right){
+  left * right + 1
+} ## defining custom operator
+4 %mult_add_one% 5 ## returns 21
+
+"%p%" <- function(left, right){
+  paste(left, right)
+}
+"I" %p% "love" %p% "R!" ## returns "I love R!"
+
+
+
+## LESSON 14 - Dates and times
 
