@@ -57,3 +57,8 @@ fact  ## returns factor with lvls specifically ordered yes, then no
 misvec <- c(1, 2, NA, 10, NaN, 3)
 is.na(misvec)  ## checks for missing values in object, returning T/F
 is.nan(misvec)  ## checks for unidentified math operations, returning T/F
+
+datframe <- data.frame(foo = 1:4, bar = c(T, T, F, F))  ## data frame
+datframe
+nrow(datframe) ## returns no of rows in data frame
+ncol(datframe) ## returns no of columns in data frame
