@@ -314,6 +314,66 @@ mad_libs <- function(...){
 
 
 
+
+## LESSON 10 - lapply and sapply
+
+## Each of the *apply functions will SPLIT up some data into smaller pieces,
+## APPLY a function to each piece, then COMBINE the results
+## Flags dataset http://archive.ics.uci.edu/ml/datasets/Flags
+
+head(flags) ## preview the first six lines (i.e. the 'head') of the dataset stored as flags
+dim(flags) ## returns info about 194 rows, or observations, and 30 columns, or variables
+class(flags) ## returns data.frame, not the actual classes of each variable
+cls_list <- lapply(flags, class) ## apply the class() function to each column
+## of the flags dataset and store the result in a variable cls_list
+class(cls_list) ## confirms that lapply returns a list
+as.character(cls_list) ## list changed into a character vector
+cls_vect <- sapply(flags, class) ## lapply, but simplified into a vector, not a list
+class(cls_vect) ## confirms that sapply returns a vector
+
+## if element length 1, sapply returns a vector
+## if element length more than 1, sapply returns a matrix
+## if various, sapply returns a list like lapply
+
+sum(flags$orange) ## no of countries with orange on their flag
+flag_colors <- flags[, 11:17] ## extracts all rows ( ,) for columns with flag color info (11-17)
+lapply(flag_colors, sum) ## returns sums of instances of each flag color as list
+sapply(flag_colors, sum) ## returns sums of instances of each flag color as vector
+sapply(flag_colors, mean) ## returns proportion of each color to all flags as vector
+
+flag_shapes <- flags[, 19:23] ## extracts all rows ( ,) for columns with flag shape info (19-23)
+lapply(flag_shapes, range) ## returns the minimum and maximum of each shape as list
+shape_mat <- sapply(flag_shapes, range) ## returns the minimum and maximum of each shape as matrix
+class(shape_mat) ## confirms it's a matrix/array
+unique(c(3, 4, 5, 5, 5, 6, 6)) ## returns unique values with duplicates removed
+unique_vals <- lapply(flags, unique) ## returns unique values of the dataset as list
+sapply(unique_vals, length) ## returns the length of elements as list (cause the length varies too much for a vector)
+lapply(unique_vals, function(elem) elem[2]) ## returns list containing the second item from each element of unique_vals
+
+
+
+
+## LESSON 11 - vapply and tapply
+
+## Whereas sapply() tries to 'guess' the correct format of the result, vapply() allows you to specify it explicitly
+vapply(flags, unique, numeric(1)) ## expects each element to be a numeric vector of length 1
+## and returns an error if that's not the case
+vapply(flags, class, character(1)) ## expectations met here
+
+## tapply splits data up into groups based on the value of some variable,
+## then applies a function to the members of each group
+table(flags$landmass) ## returns no of flags for each landmass
+table(flags$animate) ## returns no of flags with an animal etc and bare ones
+tapply(flags$animate, flags$landmass, mean) ## returns proportion of flags containing animate image within each landmass group
+## by applying mean function to 'animate' variable separately for each of the six landmass groups
+tapply(flags$population, flags$red, summary) ## returns summary of population for flags with red
+tapply(flags$population, flags$landmass, summary) ## returns summary of population for each landmass
+
+
+
+
+
+
 ## LESSON 14 - Dates and times
 
 ## dates are stored as the number of days since 1970-01-01 (Date class)
