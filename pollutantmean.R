@@ -22,20 +22,20 @@ pollutantmean <- function(directory, pollutant, id= 1:332){
   ## Create an empty vector of pollutants
   pollutants = c()
   
-  ## Get a list of filenames
+  ## Get a list of file names
   filenames = list.files(directory)
   
   ## For each .csv file in id
   for(i in id){
     
-    ## Concatinate the directory and filename
+    ## Concatenate the directory and file name
     ## e.g. directory = "C:/folder", filenames = vector("001.csv", "002.csv", ...), filepath="C:/folder/001.csv"
-    filepath=paste(directory,"/" ,filenames[i], sep="")
+    filepath = paste(directory,"/" , filenames[i], sep="")
     
     ## read in each file and store it in data
     data = read.csv(filepath, header = TRUE)
     
-    ##Concatinate the vectors from each file of the pollutant('sulfate' or 'nitrate') column to pollutants vector
+    ## Concatenate the vectors from each file of the pollutant('sulfate' or 'nitrate') column to pollutants vector
     pollutants = c(pollutants, data[,pollutant])
     
   }

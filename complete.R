@@ -25,15 +25,15 @@ complete <- function(directory, id= 1:332){
   ## Create an empty vector of nobs
   nobss = c()
   
-  ## Get a list of filenames
+  ## Get a list of file names
   filenames = list.files(directory)
   
   ## For each .csv file in id
   for(i in id){
     
-    ## Concatinate the directory and filename
+    ## Concatenate the directory and file name
     ## e.g. directory = "C:/folder", filenames = vector("001.csv", "002.csv", ...), filepath="C:/folder/001.csv"
-    filepath=paste(directory,"/" ,filenames[i], sep="")
+    filepath = paste(directory,"/" , filenames[i], sep="")
     
     ## read in each file and store it in data
     data = read.csv(filepath, header = TRUE)
@@ -42,8 +42,8 @@ complete <- function(directory, id= 1:332){
     ##completeCases = subset(data, !is.na(Date) & !is.na(sulfate) & !is.na(nitrate) & !is.na(id),select = TRUE )
     completeCases = data[complete.cases(data), ]
     
-    ids =  c(ids, i)                    ## We can use i for id and concatinate a vector of id's
-    nobss = c(nobss, nrow(completeCases) )## Concatinates the number of completed rows from the subset into a vector
+    ids =  c(ids, i)                    ## We can use i for id and concatenate a vector of id's
+    nobss = c(nobss, nrow(completeCases) )## Concatenates the number of completed rows from the subset into a vector
     
   }
   ## Return the data frame
