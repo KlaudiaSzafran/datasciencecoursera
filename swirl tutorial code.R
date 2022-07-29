@@ -372,6 +372,44 @@ tapply(flags$population, flags$landmass, summary) ## returns summary of populati
 
 
 
+## LESSON 12 - Looking at data
+
+## Plants dataset http://plants.usda.gov/adv_search.html
+ls() ## returns all active variables
+class(plants)
+dim(plants) ## informs about 5166 rows/observations and 10 columns/variables
+nrow(plants) ## how many rows
+ncol(plants) ## how many columns
+object.size(plants) ## how many bytes it occupies in memory
+names(plants) ## returns a vector of column names
+head(plants) ## first six rows by default
+head(plants, 10) ## first 10 rows
+tail(plants) ## last six rows by default
+tail(plants, 15) ## last 15 rows
+summary(plants) ## different output for each variable, depending on its class
+## For numeric data, displays the minimum, 1st quartile, median, mean, 3rd quartile, and maximum
+## These values help us understand how the data are distributed
+## For categorical/factor variables, displays the number of times each value (or 'level') occurs in the data
+## For example, each value of Scientific_Name only appears once, since it is unique to a specific plant
+## In contrast, the summary for Duration (also a factor variable) tells us that
+## our dataset contains 3031 Perennial plants, 682 Annual plants, etc
+table(plants$Active_Growth_Period) ## see how many times each value actually occurs in the data
+str(plants) ## combines many of the features of the other functions, all in a concise and readable format
+## At the very top, it tells us that the class of plants is 'data.frame' and that it has 5166 observations and 10 variables
+## It then gives us the name and class of each variable, as well as a preview of its contents
+## actually a very general function that you can use on most objects in R
+## Any time you want to understand the structure of something (a dataset, function, etc.), str() is a good place to start
+
+
+
+
+
+## LESSON 13 - Simulation
+
+
+
+
+
 
 
 ## LESSON 14 - Dates and times
