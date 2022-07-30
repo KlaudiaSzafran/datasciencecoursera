@@ -406,7 +406,29 @@ str(plants) ## combines many of the features of the other functions, all in a co
 
 ## LESSON 13 - Simulation
 
+## Each probability distribution in R has an r*** function (for "random"),
+## a d*** function (for "density"), a p*** (for "probability"), and q*** (for "quantile")
 
+sample(1:6, 4, replace = TRUE) ## simulates rolling four six-sided dice; with replacement =
+## each number is "replaced" after it is selected, so that the same number can show up more than once
+sample(1:20, 10) ## random 10 nos between 1 and 20, without replacement,
+## so no number appears more than once in the output
+LETTERS ## predefined variable in R containing a vector of all 26 letters of the English alphabet
+sample(LETTERS) ## rearranges all elements of the vector
+flips <- sample(c(0,1), 100, replace = TRUE, prob = c(0.3,0.7)) ## simulate 100 flips of an unfair two-sided coin
+## This particular coin has a 0.3 probability of landing 'tails' and a 0.7 probability of landing 'heads'
+sum(flips) ## sums the no of head flips (cause these have binary outcome 1)
+rbinom(1, size=100, prob=0.7) ## one binominal random variable, represents no. of 'successes' (heads)
+## in a given no. of independent 'trials' (coin flips), with probability of successes specified
+flips2 <- rbinom(100, size=1, prob=0.7) ## hundred random variables, representing successes or failures (1 or 0)
+sum(flips2) ## also sums the no of head flips
+rnorm(10) ## 10 random nos from standard normal distribution
+## standard normal distribution has mean 0 and standard deviation 1
+rnorm(10, 100, 25) ## 10 random nos from a normal distribution with mean 100 and standard deviation 25
+rpois(5, 10) ## 5 random numbers from a Poisson distribution with mean 10
+my_pois <- replicate(100, rpois(5, 10)) ## matrix, each column contains 5 random nos generated from Poisson distribution with mean 10
+cm <- colMeans(my_pois) ## vector of column means
+hist(cm) ## plots a histogram
 
 
 
@@ -440,3 +462,10 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M") ## converts to R time format
 Sys.time() > t1 ## checks if some time has passed
 Sys.time() - t1 ## returns time difference
 difftime(Sys.time(), t1, units = 'days') ## returns how many days have passed since creating t1
+
+
+
+
+
+## LESSON 15 - Base graphics
+
