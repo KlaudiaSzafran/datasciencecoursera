@@ -1,4 +1,6 @@
 ## R sumup slogan: 1. Everything that exists is an object. 2. Everything that happens is a function call
+## play() to suspend lesson in swirl and play with the code; nxt() to continue
+
 
 ## LESSON 1 - Building blocks
 
@@ -469,3 +471,18 @@ difftime(Sys.time(), t1, units = 'days') ## returns how many days have passed si
 
 ## LESSON 15 - Base graphics
 
+data(cars) ## loads data frame about cars
+head(cars) ## first 6 rows/observations
+plot(cars) ## makes a scatterplot for the data frame
+plot(x = cars$speed, y = cars$dist) ## practically the same plot, just more specifically described
+plot(x=cars$dist, y=cars$speed) ## reversed axes
+plot(x = cars$speed, y = cars$dist, xlab = "Speed") ## x axis label set to Speed
+plot(x = cars$speed, y = cars$dist, xlab = "Speed", ylab = "Stopping Distance") ## both axes named correctly
+plot(cars, main = "My Plot", sub = "My Plot Subtitle") ## plot title and subtitle
+plot(cars, col=2) ## points colored red
+plot(cars, xlim = c(10, 15)) ## x axis values only from 10 to 15
+plot(cars, pch=2) ## triangles instead of points
+
+data(mtcars) ## loads data frame about other cars
+boxplot(formula = mpg ~ cyl, data = mtcars) ## plot the relationship between cyl (number of cylinders) and mpg (miles per gallon)
+hist(mtcars$mpg) ## histogram of mpg
